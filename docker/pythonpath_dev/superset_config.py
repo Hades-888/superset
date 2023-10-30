@@ -59,13 +59,20 @@ DATA_CACHE_CONFIG: CacheConfig = {
     'CACHE_KEY_PREFIX': 'data_',
     'CACHE_REDIS_URL': f'redis://{REDIS_HOST}:{REDIS_PORT}/3'
 }
-# RESULTS_BACKEND = FileSyst  emCache("/app/superset_home/sqllab")
-RESULTS_BACKEND: CacheConfig = {
-    'CACHE_TYPE': 'RedisCache',
-    'CACHE_DEFAULT_TIMEOUT': CACHE_DEFAULT_TIMEOUT,
-    'CACHE_KEY_PREFIX': 'results_',
-    'CACHE_REDIS_URL': f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_RESULTS_DB}'
-}
+RESULTS_BACKEND = FileSystemCache("/app/superset_home/sqllab")
+# RESULTS_BACKEND: CacheConfig = {
+#     'CACHE_TYPE': 'RedisCache',
+#     'CACHE_DEFAULT_TIMEOUT': CACHE_DEFAULT_TIMEOUT,
+#     'CACHE_KEY_PREFIX': 'results_',
+#     'CACHE_REDIS_URL': f'redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_RESULTS_DB}'
+# }
+
+# RESULTS_BACKEND = RedisCache(
+#     host="localhost",
+#     port=6379,
+#     key_prefix="superset_results",
+#     default_timeout= 86400,  # 60 seconds * 60 minutes * 24 hours
+# )
 FILTER_STATE_CACHE_CONFIG: CacheConfig = {
     'CACHE_TYPE': 'RedisCache',
     'CACHE_DEFAULT_TIMEOUT': CACHE_DEFAULT_TIMEOUT,
